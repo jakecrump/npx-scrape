@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "bin":"./index.js",
+  "bin": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/jakecrump/npx-scrape/issues"
   },
-  "homepage": "https://github.com/jakecrump/npx-scrape#readme"
+  "homepage": "https://github.com/jakecrump/npx-scrape#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "inquirer": "^6.1.0",
+    "request": "^2.87.0"
+  }
 }
