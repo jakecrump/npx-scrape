@@ -80,8 +80,10 @@ const answering = (answers)=>{
 			}
 		})
 
-			console.log(__dirname)
-			console.log(JSON.stringify(scrapeData, null, 2))	
+		if (answers.save){
+			fs.writeFileSync(`${answers.info}.json`, JSON.stringify(scrapeData, null, 2))
+		}
+		console.log(JSON.stringify(scrapeData, null, 2))	
 		
 	})
 }
