@@ -15,7 +15,7 @@ const questions = [
 		type:'input',
 		name:'tag',
 		message:"What kind of tag do you want?"
-	}
+	},
 	{
 		type:'list',
 		name:'save'
@@ -25,7 +25,6 @@ const questions = [
 			'no'
 		]
 	}
-
 ]
 
 
