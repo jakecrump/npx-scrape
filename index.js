@@ -15,7 +15,7 @@ const questions = [
 	{
 		type:'input',
 		name:'tag',
-		message:"What kind of html tag do you want?"
+		message:"What html tag, class or ID do you want?"
 	},
 	{
 		type:'list',
@@ -41,32 +41,48 @@ const questions = [
 	}
 ]
 
-
+let scrapeData = []
 const answering = (answers)=>{
-	request(answers.url, (err, res, body)=>{
+
+	let url = answers.url;
+	if (!url.match('http')){
+		url = 'http://'+answers.url
+
+	}
+
+	request(url, (err, res, body)=>{
+		if (err){
+			console.log('Something went wrong. Sure you have a valid url?')
+		}
 		const $ = cheerio.load(body);
 		$(answers.tag).each((i, obj)=>{
 			switch (answers.info){
 				case 'html':
-					console.log($.html(obj))
+					// console.log($.html(obj))
+					scrapeData.push({'html':$.html(obj)})
 					break;
 				case 'text':
-					console.log($(obj).text())
+					// console.log($(obj).text())
+					scrapeData.push({'text':$(obj).text()})
 					break;
 				case 'href':
-					console.log($(obj).attr('href'))
+					// console.log($(obj).attr('href'))
 					break;
 				case 'src':
-					console.log($(obj).attr('src'))
+					// console.log($(obj).attr('src'))
 					break;
 				case 'class':
-					console.log($(obj).attr('class'))
+					// console.log($(obj).attr('class'))
 					break;
 				case 'id':
-					console.log($(obj).attr('id'))
+					// console.log($(obj).attr('id'))
 					break;
 			}
 		})
+
+			console.log(__dirname)
+			console.log(JSON.stringify(scrapeData, null, 2))	
+		
 	})
 }
 
