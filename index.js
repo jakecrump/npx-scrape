@@ -33,7 +33,7 @@ const questions = [
 	{
 		type:'list',
 		name:'save',
-		message:'Would you like to save the results to your desktop?',
+		message:'Would you like to save the results to your current directory?',
 		choices:[
 			'no',
 			'yes'
