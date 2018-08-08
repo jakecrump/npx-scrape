@@ -6,6 +6,16 @@ const inquirer = require('inquirer')
 const cheerio = require('cheerio')
 
 
+const slugify = (text)=>{
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '');            // Trim - from end of text
+}
+
+
 const questions = [
 	{
 		type:'input',
@@ -81,8 +91,8 @@ const answering = (answers)=>{
 		})
 
 		if (answers.save === 'yes'){
-			const safeTag = answers.tag.replace('.','').replace('#','')
-			fs.writeFileSync(`${safeTag}-${answers.info}.json`, JSON.stringify(scrapeData, null, 2))
+			const filename = slugify(`${answers.tag}-${answers.info}`)
+			fs.writeFileSync(`${filename}.json`, JSON.stringify(scrapeData, null, 2))
 		}
 		
 		console.log(JSON.stringify(scrapeData, null, 2))	
