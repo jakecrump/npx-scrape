@@ -35,8 +35,8 @@ const questions = [
 		name:'save',
 		message:'Would you like to save the results to your desktop?',
 		choices:[
-			'yes',
-			'no'
+			'no',
+			'yes'
 		]
 	}
 ]
@@ -80,9 +80,11 @@ const answering = (answers)=>{
 			}
 		})
 
-		if (answers.save){
-			fs.writeFileSync(`${answers.tag}-${answers.info}.json`, JSON.stringify(scrapeData, null, 2))
+		if (answers.save === 'yes'){
+			const safeTag = answers.tag.replace('.','').replace('#','')
+			fs.writeFileSync(`${safeTag}-${answers.info}.json`, JSON.stringify(scrapeData, null, 2))
 		}
+		
 		console.log(JSON.stringify(scrapeData, null, 2))	
 		
 	})
