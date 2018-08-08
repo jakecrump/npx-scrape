@@ -66,22 +66,22 @@ const answering = (answers)=>{
 					scrapeData.push({'text':$(obj).text()})
 					break;
 				case 'href':
-					// console.log($(obj).attr('href'))
+					scrapeData.push({'href':$(obj).attr('href')})
 					break;
 				case 'src':
-					// console.log($(obj).attr('src'))
+					scrapeData.push({'src':$(obj).attr('src')})
 					break;
 				case 'class':
-					// console.log($(obj).attr('class'))
+					scrapeData.push({'class':$(obj).attr('class')})
 					break;
 				case 'id':
-					// console.log($(obj).attr('id'))
+					scrapeData.push({'id':$(obj).attr('id')})
 					break;
 			}
 		})
 
 		if (answers.save){
-			fs.writeFileSync(`${answers.info}.json`, JSON.stringify(scrapeData, null, 2))
+			fs.writeFileSync(`${answers.tag}-${answers.info}.json`, JSON.stringify(scrapeData, null, 2))
 		}
 		console.log(JSON.stringify(scrapeData, null, 2))	
 		
